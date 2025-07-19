@@ -99,8 +99,11 @@ public class RegistrationTests {
                 .removeBanners()
                 .submitForm();
 
-        registrationPage.getFirstNameInput().shouldHave(cssValue("border-color", "rgb(220, 53, 69)"));
-        registrationPage.getLastNameInput().shouldHave(cssValue("border-color", "rgb(220, 53, 69)"));
-        registrationPage.getUserNumberInput().shouldHave(cssValue("border-color", "rgb(220, 53, 69)"));
+        String property = "border-color",
+                expectedValue = "rgb(220, 53, 69)";
+
+        registrationPage.getFirstNameInput().shouldHave(cssValue(property, expectedValue));
+        registrationPage.getLastNameInput().shouldHave(cssValue(property, expectedValue));
+        registrationPage.getUserNumberInput().shouldHave(cssValue(property, expectedValue));
     }
 }
