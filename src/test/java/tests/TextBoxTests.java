@@ -17,10 +17,11 @@ public class TextBoxTests {
         Configuration.timeout = 5000;
         //Configuration.holdBrowserOpen = true;
     }
+
     @Test
     void fillTextBoxTest() {
         String fullName = "Tony Soprano",
-               email = "test@test.com",
+                email = "test@test.com",
                 currentAddress = "Some street",
                 permanentAddress = "Summer Street";
 
@@ -38,5 +39,5 @@ public class TextBoxTests {
         textBoxPage.getEmailField().shouldHave(text(email));
         textBoxPage.getCurrentAddressField().shouldHave(text(currentAddress));
         textBoxPage.getPermanentAddressField().shouldHave(text(permanentAddress));
-}
+    }
 }
