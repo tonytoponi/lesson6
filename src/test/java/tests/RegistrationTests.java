@@ -5,12 +5,13 @@ import com.codeborne.selenide.SelenideElement;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
-
 import static com.codeborne.selenide.Condition.*;
 
 public class RegistrationTests {
 
     RegistrationPage registrationPage = new RegistrationPage();
+    TestDataGenerator testData = new TestDataGenerator();
+
 
 
     @BeforeAll
@@ -23,21 +24,22 @@ public class RegistrationTests {
     }
     @Test
     void fillFormTest() {
-       String firstName = "Tony",
-            lastName = "Soprano",
-            userEmail = "test@test.com",
-            phone = "1234567890",
-            gender = "Male",
-            day = "14",
-               month = "January",
-               year = "1991",
-               subject = "Accounting",
-               uploadPicture = "samia.jpg",
-               address = "Some street 1",
-               state = "NCR",
-               city = "Delhi";
+        String firstName = testData.getFirstName(),
+                lastName = testData.getLastName(),
+                userEmail = testData.getEmail(),
+                gender = testData.getGender(),
+                phone = testData.getPhone(),
+                day = testData.getDay(),
+                month = testData.getMonth(),
+                year = testData.getYear(),
+                subject = testData.getSubject(),
+                hobby = testData.getHobby(),
+                uploadPicture = testData.getUploadPicture(),
+                address = testData.getAddress(),
+                state = testData.getState(),
+                city = testData.getCity();
 
-       String[] hobbies = {"Sports", "Reading"};
+
 
        registrationPage.openPage()
                .removeBanners()
@@ -48,8 +50,7 @@ public class RegistrationTests {
                .setPhone(phone)
                .setDateOfBirth(day, month, year)
                .setSubjects(subject)
-               .setHobbies(hobbies[0])
-               .setHobbies(hobbies[1])
+               .setHobbies(hobby)
                .uploadPicture(uploadPicture)
                .setAddress(address)
                .setState(state)
@@ -63,7 +64,7 @@ public class RegistrationTests {
         result.shouldHave(text(phone));
         result.shouldHave(text(day + " " + month + "," + year));
         result.shouldHave(text(subject));
-        result.shouldHave(text(hobbies[0] + ", " + hobbies[1]));
+        result.shouldHave(text(hobby));
         result.shouldHave(text(uploadPicture));
         result.shouldHave(text(address));
         result.shouldHave(text(state + " " + city));
@@ -71,11 +72,11 @@ public class RegistrationTests {
 
     @Test
     void fillMinimalDataTest() {
-        String firstName = "Tony",
-                lastName = "Soprano",
-                gender = "Male",
-                phone = "1234567890",
-                birthDate = "17 July,2025";
+        String defaultBirthDate = testData.getCurrentDay();
+        String firstName = testData.getFirstName(),
+                lastName = testData.getLastName(),
+                gender = testData.getGender(),
+                phone = testData.getPhone();
 
         registrationPage.openPage()
                 .removeBanners()
@@ -89,7 +90,7 @@ public class RegistrationTests {
         result.shouldHave(text(firstName + " " + lastName));
         result.shouldHave(text(gender));
         result.shouldHave(text(phone));
-        result.shouldHave(text(birthDate));
+        result.shouldHave(text(defaultBirthDate));
     }
 
     @Test
