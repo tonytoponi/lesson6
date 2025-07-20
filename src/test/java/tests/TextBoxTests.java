@@ -9,6 +9,12 @@ import static com.codeborne.selenide.Condition.text;
 
 public class TextBoxTests {
 
+    TestDataGenerator testData = new TestDataGenerator();
+    String fullName = testData.getFirstName() + " " + testData.getLastName(),
+            email = testData.getEmail(),
+            currentAddress = testData.getAddress(),
+            permanentAddress = testData.getAddress();
+
     @BeforeAll
     static void setUp() {
         Configuration.browserSize = "1920x1080";
@@ -20,11 +26,6 @@ public class TextBoxTests {
 
     @Test
     void fillTextBoxTest() {
-        String fullName = "Tony Soprano",
-                email = "test@test.com",
-                currentAddress = "Some street",
-                permanentAddress = "Summer Street";
-
         TextBoxPage textBoxPage = new TextBoxPage();
 
         textBoxPage.openPage()

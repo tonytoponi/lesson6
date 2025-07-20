@@ -11,8 +11,21 @@ public class RegistrationTests {
 
     RegistrationPage registrationPage = new RegistrationPage();
     TestDataGenerator testData = new TestDataGenerator();
-
-
+    String firstName = testData.getFirstName(),
+            lastName = testData.getLastName(),
+            userEmail = testData.getEmail(),
+            gender = testData.getGender(),
+            phone = testData.getPhone(),
+            day = testData.getDay(),
+            month = testData.getMonth(),
+            year = testData.getYear(),
+            subject = testData.getSubject(),
+            hobby = testData.getHobby(),
+            uploadPicture = testData.getUploadPicture(),
+            address = testData.getAddress(),
+            state = testData.getState(),
+            city = testData.getCity(),
+            defaultBirthDate = testData.getCurrentDay();
 
     @BeforeAll
     static void setUp() {
@@ -24,23 +37,6 @@ public class RegistrationTests {
     }
     @Test
     void fillFormTest() {
-        String firstName = testData.getFirstName(),
-                lastName = testData.getLastName(),
-                userEmail = testData.getEmail(),
-                gender = testData.getGender(),
-                phone = testData.getPhone(),
-                day = testData.getDay(),
-                month = testData.getMonth(),
-                year = testData.getYear(),
-                subject = testData.getSubject(),
-                hobby = testData.getHobby(),
-                uploadPicture = testData.getUploadPicture(),
-                address = testData.getAddress(),
-                state = testData.getState(),
-                city = testData.getCity();
-
-
-
        registrationPage.openPage()
                .removeBanners()
                .setFirstName(firstName)
@@ -72,12 +68,6 @@ public class RegistrationTests {
 
     @Test
     void fillMinimalDataTest() {
-        String defaultBirthDate = testData.getCurrentDay();
-        String firstName = testData.getFirstName(),
-                lastName = testData.getLastName(),
-                gender = testData.getGender(),
-                phone = testData.getPhone();
-
         registrationPage.openPage()
                 .removeBanners()
                 .setFirstName(firstName)
